@@ -1,6 +1,21 @@
-<h1>Coding with Atlinx</h1>
-<div>sdfsdf</div>
-<div>
-  {{ 'avocado.png' | asset_url }}
-</div>
-<img src="{{ 'avocado.png' | asset_url }}" />
+<h2>{{ collections['frontpage'].title }}</h2>
+
+{% for product in collections['frontpage'].products %}
+  <div>
+    <img src="{{ product.featured_image | image_url: width: 400 }}">
+    <div>
+      {{ product.title }}
+    </div>
+    <div>
+      {{ product.price | money }}
+    </div>
+    <div>
+      {{ product.description }}
+    </div>
+  </div>
+  {{- product.title | link_to: product.url }}
+{% endfor %}
+{% comment %} <div>
+{{ 'avocado.png' | asset_url }}
+</div> {% endcomment %}
+{% comment %} <img src="{{ 'avocado.png' | asset_url }}" /> {% endcomment %}
